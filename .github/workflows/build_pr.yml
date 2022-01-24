@@ -10,19 +10,27 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build_and_test:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Build App
+        run: npm run build
+  Code_Quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run ESlint
+        run: npm run lint
+  Unit_Tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install Dependencies
-        run: |
-          npm install
-      - name: Check Code Quality
-        run: |
-          npm run lint
-      - name: Build
-        run: |
-          npm run build
-      - name: Unit Tests
-        run: |
-          echo "todo"
+        run: npm install
+      - name: Run Unit Tests
+        run: echo "TODO"
